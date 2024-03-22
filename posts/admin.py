@@ -3,7 +3,7 @@ from django.utils import timezone
 from .models import Post
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title','draft','publish_date','get_tags']
+    list_display = ['title','draft','publish_date','get_tags','author']
     list_filter = ['draft','tags']
     search_fields = ['title',]
     def get_tags(self, post):
