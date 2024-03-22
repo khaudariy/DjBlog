@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.utils import timezone 
-from .models import Post ,Category
+from .models import Post ,Category, Comment
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title','draft','publish_date','get_tags','author']
-    list_filter = ['draft','tags']
+    list_display = ['title','draft','publish_date','get_tags','author','category']
+    list_filter = ['draft','tags','category']
     search_fields = ['title',]
     def get_tags(self, post):
         tags = []
@@ -13,3 +13,4 @@ class ProductAdmin(admin.ModelAdmin):
         return ', '.join(tags)
 admin.site.register(Post,ProductAdmin)
 admin.site.register(Category)
+admin.site.register(Comment)
