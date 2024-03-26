@@ -1,7 +1,7 @@
 <h4>Blog</h4>
 <ul>
 {% for post in mahmoud %}
-    <li>{{post}} - {{post.author}}</li>
+    <li><a href = "/posts/{{post.id}}">{{post}}</a></li>
     {% endfor %}
 
 </ul>
