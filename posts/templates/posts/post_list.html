@@ -1,6 +1,6 @@
 <h4>Blog</h4>
 <ul>
-{% for post in mahmoud %}
+{% for post in object_list %}
     <li><a href = "/posts/{{post.id}}">{{post}}</a></li>
     {% endfor %}
 
