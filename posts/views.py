@@ -31,8 +31,14 @@ def edit_post(request,pk2 ):
             return redirect('/posts/')
     else:    
         form = PostForm(instance=post)
-
     return render(request , 'posts/edit.html' , {'form':form})
+
+def delete_post(request,pk2 ):
+    post = Post.objects.get(id=pk2)
+    post.delete()
+    return redirect('/posts/')
+
+
 class PostList(ListView):
     model = Post
 
