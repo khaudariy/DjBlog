@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
-from posts.views import post_detail , PostList , PostDetail
+from posts.views import PostList , PostDetail , create_post
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', PostList.as_view(), name='post'),
+    path('posts/new/',create_post),
     path('posts/<int:pk>',PostDetail.as_view(),name='post'),
     path('summernote/', include('django_summernote.urls')),
 ]
