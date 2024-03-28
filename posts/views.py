@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from .models import Post
 from .forms import PostForm
-from django.views.generic import ListView , DetailView
+from django.views.generic import ListView , DetailView ,CreateView ,DeleteView,UpdateView
 # Create your views here.
 
 def create_post(request):
@@ -44,7 +44,12 @@ class PostList(ListView):
 
 class PostDetail(DetailView):
     model = Post
-    
+
+class AddPost(CreateView):
+    model = Post
+    fields = '__all__'
+    success_url ='/posts/'
+
 
 
 '''
