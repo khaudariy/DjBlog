@@ -24,6 +24,8 @@
             <h4>comment</h4>
             <ul>{% for comment in comments %}
             <li>{{comment.user}} -{{comment.comment}}</li>
+            {%empty%}
+            <li>there are no comments</li>
             {% endfor %}
             </ul>
         </div>
