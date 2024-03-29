@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .models import Post
+from .models import Post,Comment
 from .forms import PostForm
 from django.views.generic import ListView , DetailView ,CreateView ,DeleteView,UpdateView
 # Create your views here.
@@ -17,7 +17,7 @@ def create_post(request):
     else:    
         form = PostForm()
 
-    return render(request , 'posts/new.html' , {'form':form})
+    return render(request , 'posts/post_form.html' , {'form':form})
 
 def edit_post(request,pk2 ):
     post = Post.objects.get(id=pk2)
@@ -38,41 +38,19 @@ def delete_post(request,pk2 ):
     post.delete()
     return redirect('/posts/')
 
-
-class PostList(ListView):
-    model = Post
-
-class PostDetail(DetailView):
-    model = Post
-
-class AddPost(CreateView):
-    model = Post
-    fields = '__all__'
-    success_url ='/posts/'
-
-class EditPost(UpdateView):
-    model = Post
-    fields = '__all__'
-    success_url ='/posts/'
-    template_name = 'posts/edit.html'
-class DeletePost(DeleteView):
-    model = Post
-    success_url ='/posts/'
-    template_name = 'post_confirm_delete.html'
-
-'''
-def post_detail(request,post_id):
-    data = Post.objects.get(id=post_id)
+def post_detail(request,pk):
+    data = Post.objects.get(id=pk)
+    comments=Comment.objects.filter(post=data) 
     context = {
-        'post' : data
+        'post' : data,
+        'comments':comments
     }
     return render (request , 'posts/post_detail.html',context)
-'''
-'''
+
+
 def post_list(request):
     data = Post.objects.all() 
     context = {
-        'mahmoud' : data
+        'object_list' : data
     }
     return render(request,'posts/post_list.html',context)
-'''
