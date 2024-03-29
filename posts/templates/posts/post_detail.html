@@ -21,13 +21,19 @@
             <P>{{post.content|safe}}</P>
         </div>
         <div>
-            <h4>comment</h4>
+            <h4>comment({{comments|length}})</h4>
             <ul>{% for comment in comments %}
             <li>{{comment.user}} -{{comment.comment}}</li>
             {%empty%}
             <li>there are no comments</li>
             {% endfor %}
             </ul>
+            <h4>Add new comment</h4>
+            <form method="post" class="mt-5">
+              {%csrf_token%}
+              {{form}}
+              <input type="submit" value="Add Commit">
+            </form>
         </div>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
