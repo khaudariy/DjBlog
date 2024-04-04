@@ -19,6 +19,7 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 from posts.views import post_list , post_detail ,  create_post , edit_post , delete_post 
+from posts.api import post_list_api
 #from posts.views import PostList , PostDetail , AddPost , EditPost ,DeletePost,
 
 urlpatterns = [
@@ -29,6 +30,7 @@ urlpatterns = [
     path('posts/<int:pk2>/delete',delete_post),
     path('posts/<int:pk>',post_detail),
     path('summernote/', include('django_summernote.urls')),
+    path('posts/api',post_list_api),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
