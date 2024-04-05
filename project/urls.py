@@ -22,6 +22,7 @@ from posts.views import post_list , post_detail ,  create_post , edit_post , del
 from posts.api import PostListAPI,PostDetailAPI
 #from posts.views import PostList , PostDetail , AddPost , EditPost ,DeletePost,
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/',post_list),

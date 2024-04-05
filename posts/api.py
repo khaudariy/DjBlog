@@ -16,9 +16,15 @@ def post_detail_api(request,id):
     return Response({'data':data})
 '''
 from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 class PostListAPI(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    filter_backends = [DjangoFilterBackend,filters.SearchFilter,filters.OrderingFilter]
+    filterset_fields = ['author', 'draft']
+    search_fields = ['content', 'title']
+    ordering_fields = ['publish_date']
 class PostDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer    
